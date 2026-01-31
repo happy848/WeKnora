@@ -22,58 +22,62 @@ import (
 )
 
 const (
-	// tableDescriptionPromptTemplate 表格描述生成的 prompt 模板
-	tableDescriptionPromptTemplate = `你是一个数据分析专家。请根据以下表格的结构信息和数据样本，生成一段简洁的表格元数据描述（200-300字）。
+	// tableDescriptionPromptTemplate Table description generation prompt template
+	tableDescriptionPromptTemplate = `You are a data analysis expert. Based on the following table structure information and data samples, generate a concise table metadata description (200-300 words) in English.
 
-表名: %s
-
-%s
-
-%s
-
-请从以下维度描述这个表格：
-1. **数据主题**：这个表格记录的是什么类型的数据？（如：用户信息、销售记录、日志数据等）
-2. **核心字段**：列出3-5个最重要的字段及其含义
-3. **数据规模**：总行数和列数
-4. **业务场景**：这个表格可能用于什么业务分析或应用场景？
-5. **关键特征**：数据有什么显著特点？（如：包含地理位置、有分类标签、存在层级关系等）
-
-**重要提示**：
-- 不要输出具体的数据值或样本内容
-- 使用概括性的描述，让用户能快速判断这个表格是否包含他们需要的信息
-- 用简洁专业的语言，便于检索和理解`
-
-	// columnDescriptionsPromptTemplate 列描述生成的 prompt 模板
-	columnDescriptionsPromptTemplate = `你是一个数据分析专家。请根据以下表格的结构信息和数据样本，为每一列生成结构化的描述信息。
-
-表名: %s
+Table name: %s
 
 %s
 
 %s
 
-请为每一列生成详细的描述，包含以下信息：
-1. **字段含义**：这一列存储的是什么信息？（如：用户ID、订单金额、创建时间等）
-2. **数据类型**：数据的类型和格式（如：整数、字符串、日期时间、布尔值等）
-3. **业务用途**：这个字段在业务中的作用（如：用于用户识别、金额计算、时间排序等）
-4. **数据特征**：数据的显著特点（如：唯一标识、可为空、有枚举值、有单位等）
+Please describe this table from the following dimensions:
+1. **Data Theme**: What type of data does this table record? (e.g., user information, sales records, log data, etc.)
+2. **Core Fields**: List 3-5 most important fields and their meanings
+3. **Data Scale**: Total number of rows and columns
+4. **Business Scenario**: What business analysis or application scenarios might this table be used for?
+5. **Key Features**: What are the significant characteristics of the data? (e.g., contains geographic location, has category tags, has hierarchical relationships, etc.)
 
-请按以下格式输出（每列一个段落）：
+**Important Notes**:
+- Do not output specific data values or sample content
+- Use generalized descriptions that allow users to quickly determine whether this table contains the information they need
+- Use concise professional language that is easy to retrieve and understand
 
-**列名1** (数据类型)
-- 字段含义：xxx
-- 业务用途：xxx
-- 数据特征：xxx
+Output in English.`
 
-**列名2** (数据类型)
-- 字段含义：xxx
-- 业务用途：xxx
-- 数据特征：xxx
+	// columnDescriptionsPromptTemplate Column description generation prompt template
+	columnDescriptionsPromptTemplate = `You are a data analysis expert. Based on the following table structure information and data samples, generate structured description information for each column in English.
 
-**重要提示**：
-- 不要输出具体的数据值，只描述字段的元信息
-- 使用清晰的业务术语，便于用户理解和搜索
-- 如果从样本数据中能推断出枚举值范围，可以概括说明（如：状态字段包含待处理/进行中/已完成等状态）`
+Table name: %s
+
+%s
+
+%s
+
+Please generate detailed descriptions for each column, including the following information:
+1. **Field Meaning**: What information does this column store? (e.g., user ID, order amount, creation time, etc.)
+2. **Data Type**: Data type and format (e.g., integer, string, date-time, boolean, etc.)
+3. **Business Purpose**: The role of this field in business (e.g., for user identification, amount calculation, time sorting, etc.)
+4. **Data Characteristics**: Significant characteristics of the data (e.g., unique identifier, nullable, has enumeration values, has units, etc.)
+
+Please output in the following format (one paragraph per column):
+
+**Column Name 1** (Data Type)
+- Field meaning: xxx
+- Business purpose: xxx
+- Data characteristics: xxx
+
+**Column Name 2** (Data Type)
+- Field meaning: xxx
+- Business purpose: xxx
+- Data characteristics: xxx
+
+**Important Notes**:
+- Do not output specific data values, only describe field metadata
+- Use clear business terminology that is easy for users to understand and search
+- If enumeration value ranges can be inferred from sample data, provide a general description (e.g., status field contains pending/in progress/completed statuses)
+
+Output in English.`
 )
 
 // NewChunkExtractTask creates a new chunk extract task

@@ -243,12 +243,14 @@ func GetBuiltinQuickAnswerAgent(tenantID uint64) *CustomAgent {
 		Config: CustomAgentConfig{
 			AgentMode:    AgentModeQuickAnswer,
 			SystemPrompt: "",
-			ContextTemplate: `请根据以下参考资料回答用户问题。
+			ContextTemplate: `Please answer user questions based on the following reference materials.
 
-参考资料：
+Reference materials:
 {{contexts}}
 
-用户问题：{{query}}`,
+User question: {{query}}
+
+Always respond in English.`,
 			Temperature:                 0.7,
 			MaxCompletionTokens:         2048,
 			WebSearchEnabled:            true,

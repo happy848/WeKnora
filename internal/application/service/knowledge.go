@@ -2020,32 +2020,32 @@ func (s *knowledgeService) generateQuestionsWithContext(ctx context.Context,
 }
 
 // Default prompt for question generation with context support
-const defaultQuestionGenerationPrompt = `你是一个专业的问题生成助手。你的任务是根据给定的【主要内容】生成用户可能会问的相关问题。
+const defaultQuestionGenerationPrompt = `You are a professional question generation assistant. Your task is to generate relevant questions that users might ask based on the given [Main Content].
 
 {{context}}
-## 主要内容（请基于此内容生成问题）
-文档名称：{{doc_name}}
-文档内容：
+## Main Content (Generate questions based on this content)
+Document Name: {{doc_name}}
+Document Content:
 {{content}}
 
-## 核心要求
-- 生成的问题必须与【主要内容】直接相关
-- 问题中禁止使用任何代词或指代词（如"它"、"这个"、"该文档"、"本文"、"文中"、"其"等），必须用具体名称替代
-- 问题必须是完整独立的，脱离上下文也能被理解
-- 问题应该是用户在实际场景中可能会提出的自然问题
-- 问题应该多样化，覆盖内容的不同方面
-- 每个问题应该简洁明了，长度控制在30字以内
-- 生成的问题数量为 {{question_count}} 个
+## Core Requirements
+- Generated questions must be directly related to the [Main Content]
+- Questions must NOT use any pronouns or demonstratives (such as "it", "this", "the document", "the text", "that", etc.), use specific names instead
+- Questions must be complete and self-contained, understandable without context
+- Questions should be natural questions that users would actually ask in real scenarios
+- Questions should be diverse, covering different aspects of the content
+- Each question should be concise and clear, preferably under 30 words
+- Generate exactly {{question_count}} questions
 
-## 问题类型建议
-- 定义类：什么是...？...是什么？
-- 原因类：为什么...？...的原因是什么？
-- 方法类：如何...？怎样...？
-- 比较类：...和...有什么区别？
-- 应用类：...可以用于什么场景？
+## Question Type Suggestions
+- Definition: What is...? What does... mean?
+- Reason: Why...? What is the reason for...?
+- Method: How to...? How can I...?
+- Comparison: What is the difference between... and...?
+- Application: What scenarios can... be used for?
 
-## 输出格式
-直接输出问题列表，每行一个问题，不要有序号或其他前缀。`
+## Output Format
+Output the question list directly, one question per line, without numbering or other prefixes.`
 
 // GetKnowledgeFile retrieves the physical file associated with a knowledge entry
 func (s *knowledgeService) GetKnowledgeFile(ctx context.Context, id string) (io.ReadCloser, string, error) {

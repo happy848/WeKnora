@@ -312,11 +312,11 @@ func (t *WebFetchTool) processWithLLM(ctx context.Context, params webFetchParams
 		return "", fmt.Errorf("chat model not available for web_fetch")
 	}
 
-	systemMessage := "你是一名擅长阅读网页内容的智能助手，请根据提供的网页文本回答用户需求，严禁编造未在文本中出现的信息。"
-	userTemplate := `用户请求:
+	systemMessage := "You are an intelligent assistant skilled at reading web content. Please answer user needs based on the provided web text, and strictly prohibit fabricating information that does not appear in the text. Always respond in English."
+	userTemplate := `User request:
 %s
 
-网页内容:
+Web content:
 %s`
 
 	messages := []chat.Message{

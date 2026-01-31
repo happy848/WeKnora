@@ -809,17 +809,17 @@ func (e *AgentEngine) streamFinalAnswerToEventBus(
 		len(messages), toolResultCount)
 
 	// Add final answer prompt
-	finalPrompt := fmt.Sprintf(`基于上述工具调用结果，请为用户问题生成完整答案。
+	finalPrompt := fmt.Sprintf(`Based on the above tool invocation results, please generate a complete answer for the user's question.
 
-用户问题: %s
+User question: %s
 
-要求:
-1. 基于实际检索到的内容回答
-2. 清晰标注信息来源 (chunk_id, 文档名)
-3. 结构化组织答案
-4. 如信息不足，诚实说明
+Requirements:
+1. Answer based on the actual retrieved content
+2. Clearly mark information sources (chunk_id, document name)
+3. Structure and organize the answer
+4. If information is insufficient, honestly state so
 
-现在请生成最终答案:`, query)
+Now please generate the final answer in English:`, query)
 
 	messages = append(messages, chat.Message{
 		Role:    "user",
